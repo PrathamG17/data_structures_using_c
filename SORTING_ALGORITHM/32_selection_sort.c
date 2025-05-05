@@ -1,0 +1,50 @@
+#include<stdio.h>
+#define MAX 20
+void SelectionSort(int Data[],int iSize);
+int main(void)
+{
+	int Data[MAX]={0};
+	int iCounter;
+	int iSize;
+	
+	printf("HOW MANY NUMBER OF ELEMENTS YOU WANT TO ENTER(<20):\t");
+	scanf("%d",&iSize);
+	
+	printf("\n-----ENTER YOUR %d NUMBERS-----\n",iSize);
+	for(iCounter=0 ; iCounter<iSize ; iCounter++)
+	{
+		printf("\tENTER NUMBER %d:",iCounter+1);
+		scanf("%d",&Data[iCounter]);
+	}
+	
+	SelectionSort(Data,iSize);
+	
+	printf("\n-----YOUR SORTED DATA-----\n");
+	for(iCounter=0 ; iCounter<iSize ; iCounter++)
+		printf("%d\t",Data[iCounter]);
+	
+	return 0;
+}
+void SelectionSort(int Data[],int iSize)
+{
+	int iMin;	
+	int iCounter1;
+	int iCounter2;
+	
+	for(iCounter1=0 ; iCounter1<iSize-1 ; iCounter1++)
+	{
+		iMin=iCounter1;
+		for(iCounter2=iCounter1+1 ; iCounter2<iSize ; iCounter2++)
+		{
+			if(Data[iCounter2]<Data[iMin])
+				iMin=iCounter2;
+		}
+		
+		if(iCounter1!=iMin)
+		{
+			Data[iCounter1]=Data[iCounter1]+Data[iMin];
+			Data[iMin]=Data[iCounter1]-Data[iMin];
+			Data[iCounter1]=Data[iCounter1]-Data[iMin];
+		}
+	}
+}
